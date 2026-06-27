@@ -1,0 +1,101 @@
+{
+  "theme": "hybrid_fullstack",
+  "archetype": "Archetype 1 / Archetype 4 Hybrid (Editorial Seriousness + Swiss Brutalist Fintech)",
+  "typography": {
+    "headings": {
+      "font_family": "Fraunces, serif",
+      "weights": ["300", "400", "600"],
+      "usage": "H1-H3, display text, hero section, empty states. Gives the FT/Economist feel.",
+      "letter_spacing": "tracking-tight"
+    },
+    "body": {
+      "font_family": "Geist, IBM Plex Sans, sans-serif",
+      "weights": ["400", "500"],
+      "usage": "Paragraphs, data tables, chat bubbles, UI controls. Gives the Linear/Vercel polish.",
+      "letter_spacing": "tracking-normal"
+    },
+    "mono": {
+      "font_family": "JetBrains Mono, monospace",
+      "usage": "Citations, tickers, numbers, financial figures."
+    }
+  },
+  "colors": {
+    "light_mode": {
+      "background": "#F9F8F6",
+      "surface": "#FFFFFF",
+      "surface_muted": "#F3F1EC",
+      "text_primary": "#1A1A1A",
+      "text_secondary": "#5C5C5C",
+      "primary_accent": "#1A4027",
+      "primary_accent_hover": "#13311E",
+      "secondary_accent": "#732424",
+      "border": "#E5E2D9",
+      "success": "#1A4027",
+      "warning": "#B8860B",
+      "danger": "#732424",
+      "citation_bg": "#EAE7DF",
+      "citation_text": "#1A4027"
+    },
+    "dark_mode": {
+      "background": "#0C0C0C",
+      "surface": "#161616",
+      "surface_muted": "#202020",
+      "text_primary": "#EDEDED",
+      "text_secondary": "#A1A1AA",
+      "primary_accent": "#D4AF37",
+      "primary_accent_hover": "#E5C158",
+      "secondary_accent": "#8C3A3A",
+      "border": "#262626",
+      "success": "#32D74B",
+      "warning": "#FF9F0A",
+      "danger": "#FF453A",
+      "citation_bg": "#2A2415",
+      "citation_text": "#D4AF37"
+    }
+  },
+  "layout_and_spacing": {
+    "philosophy": "Generous spacing for reading focus. The chat area should be centered and constrained (max-w-4xl) until a citation is clicked, at which point the layout gracefully expands to a split-pane (left: chat, right: document viewer).",
+    "bento_grid": "For the company overview and filing library, use Mode B: The Control Room Grid. Tight gaps (gap-4), strict column alignment.",
+    "padding": "Use p-6 to p-8 for major containers. Chat input area should be floating and distinct."
+  },
+  "components": {
+    "chat_message_ai": "Left-aligned, transparent background. Typography: Geist for body text. Use raw HTML/Tailwind for layout.",
+    "chat_message_user": "Right-aligned or indented. Background: surface_muted. Typography: Geist.",
+    "citation_chip": "Inline component. Small pill (rounded-full px-2 py-0.5). Uses Mono font, text-xs. In light mode: pale cream/green with dark green text. In dark mode: dim amber bg with amber text. MUST have data-testid='citation-chip'.",
+    "confidence_badge": "Small inline flex with a colored dot (w-2 h-2 rounded-full) and text-xs label ('High', 'Medium', 'Low').",
+    "source_drawer": "A side panel (w-1/3 or w-1/2 of screen) that slides in from the right. Contains the raw PDF chunk text, highlighted. Header uses Fraunces.",
+    "company_selector": "Shadcn Command/Combobox component. Styled strictly with borders (no heavy shadows).",
+    "filings_library": "Dense data table (Shadcn Table) or list. Pure technical look. No cards.",
+    "chat_input": "Shadcn Textarea, borderless appearance within a styled wrapper (border, rounded-lg, focus-within:ring-1). Includes file upload button icon."
+  },
+  "motion_and_interactions": {
+    "citations": "Hovering over a citation chip highlights the chip. Clicking smoothly slides open the source_drawer.",
+    "chat_streaming": "Answers must appear with a subtle typing or fade-in effect.",
+    "theme_toggle": "Smooth background color transition (transition-colors duration-300)."
+  },
+  "icons_and_assets": {
+    "library": "lucide-react",
+    "usage": "Use stroke-width 1.5 for a sharp, editorial, technical feel."
+  },
+  "media_urls": {
+    "landing_hero_texture": {
+      "url": "https://images.unsplash.com/photo-1631519952398-5b1d76b946e8?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzd8MHwxfHNlYXJjaHwxfHxmaW5hbmNpYWwlMjBuZXdzcGFwZXIlMjB0ZXh0dXJlfGVufDB8fHx8MTc4MDcyOTMzNnww&ixlib=rb-4.1.0&q=85",
+      "description": "Financial newspaper texture for a subtle background blend mode overlay on the landing/login page."
+    },
+    "empty_state_illustration": {
+      "url": "https://images.unsplash.com/photo-1468254095679-bbcba94a7066?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzh8MHwxfHNlYXJjaHwxfHx3YWxsJTIwc3RyZWV0JTIwYXJjaGl0ZWN0dXJlfGVufDB8fHx8MTc4MDcyOTMzNnww&ixlib=rb-4.1.0&q=85",
+      "description": "Grayscale Wall Street signage for empty document states or 'select a company' zero-state."
+    }
+  },
+  "instructions_to_main_agent": [
+    "Install dependencies: lucide-react, clsx, tailwind-merge, recharts, framer-motion",
+    "Configure Tailwind with the specified custom color palette for both light and dark modes in tailwind.config.js.",
+    "Load 'Fraunces' and 'Geist' (or 'IBM Plex Sans') fonts and apply them correctly based on the typography rules.",
+    "Build a Split-Pane layout: The main screen is a centered chat interface. When a citation is clicked, a document viewer pane smoothly opens on the right side.",
+    "Do NOT use standard blue/purple gradients or Inter font. Stick strictly to the Cream/Forest Green (Light) and Off-Black/Amber (Dark) palette.",
+    "Add a Light/Dark mode toggle to the header. Apply the theme classes via standard Tailwind 'dark:' selectors.",
+    "Ensure all interactive elements have 'data-testid' attributes (e.g., data-testid='company-selector', data-testid='chat-input').",
+    "Mock the streaming AI answer functionality (typing effect) and document chunk retrieval to demonstrate the core value prop.",
+    "Implement the confidence badges (High/Medium/Low) next to the AI responses."
+  ]
+}
